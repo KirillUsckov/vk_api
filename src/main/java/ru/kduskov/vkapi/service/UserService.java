@@ -37,11 +37,7 @@ public class UserService {
                 optional = Optional.of(user);
             }
             con.disconnect();
-        }catch (ProtocolException e) {
-            throw new RuntimeException(e);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        }catch (Exception e) {
             throw new RuntimeException(e);
         }
 
