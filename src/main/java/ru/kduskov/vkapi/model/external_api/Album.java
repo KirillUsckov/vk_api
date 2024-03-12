@@ -1,4 +1,4 @@
-package ru.kduskov.vkapi.model;
+package ru.kduskov.vkapi.model.external_api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

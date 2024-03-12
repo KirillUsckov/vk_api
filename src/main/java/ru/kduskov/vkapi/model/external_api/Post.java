@@ -1,7 +1,8 @@
-package ru.kduskov.vkapi.model;
+package ru.kduskov.vkapi.model.external_api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -14,6 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Post {
     private int userId;

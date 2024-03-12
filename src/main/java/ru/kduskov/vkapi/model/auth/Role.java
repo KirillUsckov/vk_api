@@ -1,13 +1,13 @@
-package ru.kduskov.vkapi.model;
+package ru.kduskov.vkapi.model.auth;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table(name="roles")
-@Getter
 @Setter
+@Getter
+@Entity
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

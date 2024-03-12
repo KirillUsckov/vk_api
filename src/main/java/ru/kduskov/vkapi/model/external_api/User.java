@@ -1,5 +1,8 @@
-package ru.kduskov.vkapi.model;
+package ru.kduskov.vkapi.model.external_api;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +39,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String username;
