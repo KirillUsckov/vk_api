@@ -1,6 +1,7 @@
 package ru.kduskov.vkapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.kduskov.vkapi.constants.ExternalApiConstants;
@@ -13,7 +14,9 @@ public class AlbumService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Cacheable("albums")
     public Optional<Album> get(int id){
+        System.out.println("get album with id : "+ id);
         Optional album = Optional.empty();
         try {
             String endpoint = String.format("%s/%d", ExternalApiConstants.ALBUMS, id);

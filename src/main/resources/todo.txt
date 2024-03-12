@@ -11,3 +11,11 @@
 - ROLE_ALBUMS -- имеет доступ к обработчикам /albums/**
 4)Реализовать ведение аудита действий. (дата-время, пользователь, имеет ли доступ, параметры запроса, ...)
 5)Реализовать inmemory кэш, чтобы уменьшить число запросов к jsonplaceholder. То есть изменения данных сначала должны происходить в кэше, а потом отправляться запросы на jsonplaceholder.
+
+The available nested routes are:
+
+/posts/1/comments
+/albums/1/photos
+/users/1/albums
+/users/1/todos
+/users/1/posts

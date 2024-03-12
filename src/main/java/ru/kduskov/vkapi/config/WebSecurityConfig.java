@@ -10,11 +10,13 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 import ru.kduskov.vkapi.service.auth.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
@@ -30,6 +32,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/albums/**").hasAnyRole("ADMIN", "POSTS")
                         .anyRequest().authenticated())
                 .httpBasic();
+                //.httpBasic();
 
         return http.build();
     }
