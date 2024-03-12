@@ -18,11 +18,8 @@ import java.util.*;
 import static ru.kduskov.vkapi.constants.ExternalApiConstants.*;
 
 @Service
-public class PostService {
+public class PostService extends BaseService{
     private final Logger logger = LoggerFactory.getLogger(PostService.class);
-
-    @Autowired
-    private RestTemplate restTemplate;
 
     @Cacheable(cacheNames = {"posts"}, key = "#id")
     public Optional<Post> get(int id) {
@@ -41,17 +38,19 @@ public class PostService {
 
     @CacheEvict(cacheNames = {"posts"}, key = "#id")
     public boolean delete(int id) {
-        logger.info(String.format("Delete post with id %d", id));
-        try {
-            String endpoint = String.format("%s/%d", POSTS, id);
-            logger.info("Send DELETE request to :" + URL + endpoint);
+//        logger.info(String.format("Delete post with id %d", id));
+//        try {
+//            String endpoint = String.format("%s/%d", POSTS, id);
+//            logger.info("Send DELETE request to :" + URL + endpoint);
+//
+//            restTemplate.delete(endpoint);
+//        } catch (Exception e) {
+//            logger.error(String.format("Error while deleting post with id %d: %s", id, e.getMessage()));
+//            return false;
+//        }
+//        return true;
+        return super.delete(id, "post", POSTS);
 
-            restTemplate.delete(endpoint);
-        } catch (Exception e) {
-            logger.error(String.format("Error while deleting post with id %d: %s", id, e.getMessage()));
-            return false;
-        }
-        return true;
     }
 
     @CachePut(cacheNames = {"posts_comments"}, key = "#id")
@@ -74,7 +73,7 @@ public class PostService {
         return commentsList;
     }
 
-    @Cacheable(cacheNames = {"posts"}, key = "#id")
+    @Cacheable(cacheNames = {"posts"}, key = "#incomingPost.id")
     public int create(Post incomingPost) {
         logger.info(String.format("Create post with id %d", incomingPost.getId()));
 
@@ -85,7 +84,7 @@ public class PostService {
         return post.getId();
     }
 
-    @CachePut(cacheNames = {"posts"}, key = "#id")
+    @CachePut(cacheNames = {"posts"}, key = "#incomingPost.id")
     public int update(Post incomingPost) {
         logger.info(String.format("Update post with id %d", incomingPost.getId()));
 

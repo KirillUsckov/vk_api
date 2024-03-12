@@ -9,7 +9,6 @@ import ru.kduskov.vkapi.constants.ExternalApiConstants;
 
 @Configuration
 public class WebConfig {
-
     @Value(ExternalApiConstants.URL)
     private String apiHost;
 

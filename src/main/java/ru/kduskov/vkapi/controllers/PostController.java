@@ -37,8 +37,9 @@ public class PostController {
     public ResponseEntity deletePost(@PathVariable Integer id) {
         logger.info(String.format("DELETE request for post with id %d", id));
 
-        if(postService.delete(id))
-            return ResponseEntity.ok().build();
+        if(postService.get(id).isPresent())
+            if(postService.delete(id))
+                return ResponseEntity.ok().build();
         return ResponseEntity.notFound().build();
     }
 
@@ -52,6 +53,8 @@ public class PostController {
     @PutMapping
     public ResponseEntity<String> put(@RequestParam Integer id, @RequestBody Post incPost) {
         logger.info(String.format("PUT request for post with id %d and params for update %s", id, incPost));
+        if(!postService.get(id).isPresent())
+            return ResponseEntity.notFound().build();
 
         Post post = (Post) postService.get(id).get();
         post.setUserId(incPost.getUserId() == 0 ? post.getUserId() : incPost.getUserId());
@@ -64,6 +67,8 @@ public class PostController {
     @RequestMapping(value = "/{id}/comments", method = RequestMethod.GET)
     public ResponseEntity<List<Comment>> getPostsComments(@PathVariable Integer id) {
         logger.info(String.format("GET request for post with id %d", id));
+        if(!postService.get(id).isPresent())
+            return ResponseEntity.notFound().build();
 
         Optional post = postService.getComments(id);
         if (post.isPresent())
