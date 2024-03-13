@@ -73,4 +73,15 @@ public class AlbumController {
             return ResponseEntity.ok().body((List<Photo>)photoList.get());
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping
+    public ResponseEntity<List<Album>> getAlbumsByUserId(@RequestParam Integer userId) {
+        logger.info(String.format("GET request for albums with userId %d", userId));
+
+        Optional albumsByUser = albumService.getAlbumsByUser(userId);
+        if (albumsByUser.isPresent())
+            return ResponseEntity.ok().body((List<Album>) albumsByUser.get());
+
+        return ResponseEntity.notFound().build();
+    }
 }

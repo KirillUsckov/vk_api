@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.kduskov.vkapi.constants.ExternalApiConstants;
 import ru.kduskov.vkapi.model.audit.AuditRecord;
+import ru.kduskov.vkapi.model.external.api.Album;
 import ru.kduskov.vkapi.model.external.api.Post;
 import ru.kduskov.vkapi.repository.AuditRecordRepository;
 import ru.kduskov.vkapi.utils.GeneralInfo;
@@ -21,6 +22,7 @@ import java.util.Optional;
 import static java.lang.String.format;
 import static ru.kduskov.vkapi.constants.ExternalApiConstants.URL;
 import static ru.kduskov.vkapi.constants.ExternalApiConstants.USERS;
+import static ru.kduskov.vkapi.utils.StringUtils.cutWithEllipsis;
 
 @Service
 public class BaseService {
@@ -30,7 +32,7 @@ public class BaseService {
     @Autowired
     protected AuditRecordRepository auditRep;
 
-    public boolean delete(int id, String endpPart) {
+    protected boolean delete(int id, String endpPart) {
         String action = String.format("Delete %s with id %d", endpPart, id);
         logger.info(action);
         auditRep.save(new AuditRecord(LocalDateTime.now(), endpPart, GeneralInfo.user(), true, action));
@@ -45,8 +47,8 @@ public class BaseService {
         return true;
     }
 
-    public <T> T create(T input, String endpoint) {
-        String action = String.format("Create %s with params %s", endpoint, input);
+    protected  <T> T create(T input, String endpoint) {
+        String action = String.format("Create %s with params %s", endpoint, cutWithEllipsis(input.toString(), 50));
         logger.info(action);
         auditRep.save(new AuditRecord(LocalDateTime.now(), endpoint, GeneralInfo.user(), true, action));
 
@@ -56,8 +58,8 @@ public class BaseService {
         return (T) restTemplate.postForObject(endpoint, request, input.getClass());
     }
 
-    public <T> T update(T input, int id, String endpPart) {
-        String action = String.format("Update %s with id %d", endpPart, id);
+    protected  <T> T update(T input, int id, String endpPart) {
+        String action = String.format("Update %s with id %d: %s", endpPart, id, cutWithEllipsis(input.toString(), 50));
         logger.info(action);
         auditRep.save(new AuditRecord(LocalDateTime.now(), endpPart, GeneralInfo.user(), true, action));
 
@@ -75,7 +77,7 @@ public class BaseService {
         }
     }
 
-    public <T> Optional<T> get(int id, String endpPart, Class<T> cl) {
+    protected  <T> Optional<T> get(int id, String endpPart, Class<T> cl) {
         String action = String.format("Get %s with id : %d", endpPart, id);
         logger.info(action);
         auditRep.save(new AuditRecord(LocalDateTime.now(), endpPart, GeneralInfo.user(), true, action));
@@ -85,27 +87,22 @@ public class BaseService {
             String endpoint = format("%s/%d", endpPart, id);
             logger.info("Send POST request to :" + URL + endpoint);
 
-            result = Optional.ofNullable(restTemplate.getForObject(endpoint, cl));
+            result =  Optional.of(restTemplate.getForObject(endpoint, cl));
         } catch (Exception e) {
-            logger.warn(format("%s with id %d wasn't found:$s", endpPart, id, e.getMessage()));
+            logger.error(format("%s with id %d wasn't found:%s", endpPart, id, e.getMessage()));
         }
         return result;
     }
 
-    public <T> Optional<T> getList(int id, String endpoint) {
-        String action =String.format("Get posts for user with id %d", id);
+    protected <T> Optional<List<T>> getList(int id, String endpoint) {
+        String action =String.format("Get %s by id %d", endpoint,  id);
         logger.info(action);
         auditRep.save(new AuditRecord(LocalDateTime.now(), endpoint, GeneralInfo.user(), true, action));
 
         Optional resList = Optional.empty();
         try {
             logger.info("Send request to " + URL + endpoint);
-
-            ResponseEntity<List<T>> rateResponse =
-                    restTemplate.exchange(endpoint,
-                            HttpMethod.GET, null, new ParameterizedTypeReference<List<T>>() {
-                            });
-            resList = Optional.of(rateResponse.getBody());
+            resList = Optional.of((List<T>) restTemplate.getForObject(endpoint, List.class));
         } catch (Exception e) {
             logger.error(format("Error while searching for %s with id %d: %s", endpoint, id, e.getMessage()));
         }

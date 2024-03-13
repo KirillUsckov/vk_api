@@ -5,6 +5,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.util.Objects;
+
 
 @Getter
 @Setter
@@ -22,4 +24,17 @@ public class User {
     private String phone;
     private String website;
     private Company company;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return this.hashCode() == user.hashCode() && Objects.equals(address, user.address) && Objects.equals(company, user.company);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, username, email, phone, website);
+    }
 }

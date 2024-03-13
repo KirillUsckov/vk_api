@@ -1,17 +1,23 @@
 package ru.kduskov.vkapi.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import ru.kduskov.vkapi.constants.ExternalApiConstants;
 import ru.kduskov.vkapi.model.external.api.Album;
 import ru.kduskov.vkapi.model.external.api.Photo;
+import ru.kduskov.vkapi.model.external.api.Post;
 import ru.kduskov.vkapi.model.external.api.User;
+import ru.kduskov.vkapi.repository.AuditRecordRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +30,12 @@ import static ru.kduskov.vkapi.constants.ExternalApiConstants.*;
 @Service
 public class AlbumService extends BaseService {
     private final Logger logger = LoggerFactory.getLogger(AlbumService.class);
+
+    @Autowired
+    public AlbumService(RestTemplate restTemplate, AuditRecordRepository auditRep) {
+        this.restTemplate = restTemplate;
+        this.auditRep = auditRep;
+    }
 
     @Cacheable(cacheNames = {"albums"}, key = "#id")
     public Optional<Album> get(int id) {
@@ -55,6 +67,13 @@ public class AlbumService extends BaseService {
     @CachePut(cacheNames = {"albums_photos"}, key = "#id")
     public Optional<List<Photo>> getPhotos(int id) {
         logger.info(format("Get photos for album with id %d", id));
-        return super.getList(id, format("%s/%d%s", ALBUMS, id, PHOTOS));
+        Optional list = super.getList(id, format("%s/%d%s", ALBUMS, id, PHOTOS));
+        return Optional.of(new ObjectMapper().convertValue(list.get(), new TypeReference<List<Photo>>() {}));
+    }
+
+    @CachePut(cacheNames = {"users_albums"}, key = "#userId")
+    public Optional<List<Album>> getAlbumsByUser(Integer userId) {
+        Optional list =  super.getList(userId, String.format("%s?userId=%d", ALBUMS, userId));
+        return Optional.of(new ObjectMapper().convertValue(list.get(), new TypeReference<List<Album>>() {}));
     }
 }
