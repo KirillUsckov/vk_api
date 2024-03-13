@@ -5,9 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.kduskov.vkapi.model.external_api.Album;
-import ru.kduskov.vkapi.model.external_api.Post;
-import ru.kduskov.vkapi.model.external_api.User;
+import ru.kduskov.vkapi.model.external.api.Album;
+import ru.kduskov.vkapi.model.external.api.Post;
+import ru.kduskov.vkapi.model.external.api.User;
 import ru.kduskov.vkapi.service.UserService;
 
 import java.util.List;

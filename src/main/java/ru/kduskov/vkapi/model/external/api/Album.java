@@ -1,14 +1,7 @@
-package ru.kduskov.vkapi.model.external_api;
+package ru.kduskov.vkapi.model.external.api;
 
 import lombok.*;
 
-/**
- * {
- *     "userId": 1,
- *     "id": 2,
- *     "title": "sunt qui excepturi placeat culpa"
- * }
- */
 @Getter
 @Setter
 @ToString
