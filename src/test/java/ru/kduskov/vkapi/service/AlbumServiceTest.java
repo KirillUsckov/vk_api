@@ -12,9 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import ru.kduskov.vkapi.constants.ExternalApiConstants;
 import ru.kduskov.vkapi.model.external.api.Album;
-import ru.kduskov.vkapi.model.external.api.Comment;
-import ru.kduskov.vkapi.model.external.api.Post;
-import ru.kduskov.vkapi.model.external.api.User;
+import ru.kduskov.vkapi.model.external.api.Photo;
 import ru.kduskov.vkapi.repository.AuditRecordRepository;
 import ru.kduskov.vkapi.utils.TestData;
 
@@ -23,14 +21,12 @@ import java.util.Optional;
 
 
 @ExtendWith(MockitoExtension.class)
-public class PostServiceTest {
+public class AlbumServiceTest {
     private RestTemplate restTemplate;
     @Mock
     protected AuditRecordRepository auditRep;
-
-    private PostService postService;
+    private AlbumService albumService;
     private UserService userService;
-
 
     {
         restTemplate = new RestTemplate();
@@ -39,39 +35,53 @@ public class PostServiceTest {
 
     @BeforeEach
     public void setUp(){
-        postService = new PostService(restTemplate, auditRep);
+        albumService = new AlbumService(restTemplate, auditRep);
         userService = new UserService(restTemplate, auditRep);
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1})
-    public void shouldReturnPostById(int id) throws JsonProcessingException {
-        Optional post = postService.get(id);
-        Assertions.assertTrue(post.isPresent());
+    @ValueSource(ints = {2})
+    public void shouldReturnAlbumById(int id) throws JsonProcessingException {
+        Optional album = albumService.get(id);
+        Assertions.assertTrue(album.isPresent());
 
-        Post tPost = TestData.getPost(id);
-        Assertions.assertEquals(post.get(), tPost);
+        Album tAlbum = TestData.getAlbum(id);
+        Assertions.assertEquals(tAlbum, album.get());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1})
-    public void shouldReturnAllUsersAlbums(int id) throws JsonProcessingException {
-        Optional comments = postService.getComments(id);
+    @ValueSource(ints = {2})
+    public void shouldReturnAllAlbumsPhotos(int id) throws JsonProcessingException {
+        Optional comments = albumService.getPhotos(id);
         Assertions.assertTrue(comments.isPresent());
 
-        List<Comment> expAlbums = TestData.getPostsComments(id);
-        Assertions.assertEquals(comments.get(), expAlbums);
+        List<Photo> expPhotos = TestData.getAlbumsPhotos(id);
+        Assertions.assertEquals(expPhotos, comments.get());
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1})
-    public void postsByUserFilterShouldBeAsListOfUsersPosts(int userId) throws JsonProcessingException {
-        Optional postsOfUser = userService.getPosts(userId);
-        Optional usersPosts = postService.getPostsByUser(userId);
-        Assertions.assertTrue(postsOfUser.isPresent());
-        Assertions.assertTrue(usersPosts.isPresent());
-        Assertions.assertEquals(postsOfUser.get(), usersPosts.get());
+    public void albumsByUserFilterShouldBeAsListOfUsersAlbums(int userId) throws JsonProcessingException {
+        Optional usersAlbums = userService.getAlbums(userId);
+        Optional albumsByUser = albumService.getAlbumsByUser(userId);
+        Assertions.assertTrue(usersAlbums.isPresent());
+        Assertions.assertTrue(albumsByUser.isPresent());
+        Assertions.assertEquals(usersAlbums.get(), albumsByUser.get());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {101})
+    public void albumShouldBeCreatedWithNewId(int albumId) throws JsonProcessingException {
+        int res = albumService.create(TestData.getAlbum(albumId));
+        Assertions.assertEquals(albumId, res);
+    }
 
+    @ParameterizedTest
+    @ValueSource(ints = {101})
+    public void albumShouldBeDeleted(int albumId) throws JsonProcessingException {
+        boolean res = albumService.delete(albumId);
+        Assertions.assertEquals(true, res);
+
+        // To check was album actually deleted, there should be get request
+    }
 }
