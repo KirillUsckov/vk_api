@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "e996c287-5de4-4d10-a917-119cff1a2ed1",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33507786"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "posts update",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "some title",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "new body",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "\"new titile\"",
+									"disabled": true
+								},
+								{
+									"key": "body",
+									"value": "null",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "posts",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "posts",
+								"username": "posts"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/posts/1"
+					},
+					"response": []
+				},
+				{
+					"name": "posts create",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/posts?title=\"test title\"&userId=1&body=\"my test body\"",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "\"test title\""
+								},
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "body",
+									"value": "\"my test body\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post comments",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "posts",
+								"username": "posts"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/posts/1/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "posts delete",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/posts/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "albums",
+			"item": [
+				{
+					"name": "album",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/albums/100"
+					},
+					"response": []
+				},
+				{
+					"name": "album photos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "albums",
+								"username": "albums"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/albums/1/photos"
+					},
+					"response": []
+				},
+				{
+					"name": "album",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "albums",
+								"username": "albums"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/albums/10"
+					},
+					"response": []
+				},
+				{
+					"name": "album",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "albums",
+								"username": "albums"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":1,\r\n    \"title\":\"New title\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/albums",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"albums"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "\"test title\"",
+									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "users alb",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "users",
+								"username": "users"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/users/1/albums"
+					},
+					"response": []
+				},
+				{
+					"name": "users posts",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/users/1/posts"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "album auth positive",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "alb_viewer",
+								"password": "alb_viewer"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/albums/100"
+					},
+					"response": []
+				},
+				{
+					"name": "album auth negative",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "alb_viewer",
+								"username": "alb_viewer"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/albums/100"
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"kir\",\r\n    \"password\": \"mypassword\",\r\n    \"role\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/auth/kir"
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "admin",
+								"username": "admin"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"kirill\",\r\n    \"password\": \"new_password\",\r\n    \"role\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth/15"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

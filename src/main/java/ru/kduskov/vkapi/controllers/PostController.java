@@ -1,17 +1,14 @@
 package ru.kduskov.vkapi.controllers;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.kduskov.vkapi.model.external_api.Comment;
-import ru.kduskov.vkapi.model.external_api.Post;
+import ru.kduskov.vkapi.model.external.api.Comment;
+import ru.kduskov.vkapi.model.external.api.Post;
 import ru.kduskov.vkapi.service.PostService;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 

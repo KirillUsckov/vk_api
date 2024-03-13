@@ -13,11 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import ru.kduskov.vkapi.components.CustomAccessDeniedHandler;
 import ru.kduskov.vkapi.service.auth.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+    @Autowired
+    private CustomAccessDeniedHandler accessDeniedHandler;
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -36,6 +39,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/auth/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic();
+        http.exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler);
 
         return http.build();
     }

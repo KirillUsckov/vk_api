@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.kduskov.vkapi.model.auth.User;
 import ru.kduskov.vkapi.repository.UserRepository;
 
+import javax.swing.plaf.PanelUI;
+import java.nio.file.AccessDeniedException;
+
 @RestController
 @RequestMapping("/auth")
 public class UserAuthController {

@@ -5,10 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.kduskov.vkapi.model.external_api.Album;
-import ru.kduskov.vkapi.model.external_api.Album;
-import ru.kduskov.vkapi.model.external_api.Comment;
-import ru.kduskov.vkapi.model.external_api.Photo;
+import ru.kduskov.vkapi.model.external.api.Album;
+import ru.kduskov.vkapi.model.external.api.Photo;
 import ru.kduskov.vkapi.service.AlbumService;
 
 import java.util.List;
@@ -54,7 +52,7 @@ public class AlbumController {
     @PutMapping
     public ResponseEntity<String> put(@RequestParam Integer id, @RequestBody Album incAlbum) {
         logger.info(String.format("PUT request for Album with id %d and params for update %s", id, incAlbum));
-        if(!albumService.get(id).isPresent())
+        if(albumService.get(id).isEmpty())
             return ResponseEntity.notFound().build();
 
         Album album = (Album) albumService.get(id).get();
@@ -67,7 +65,7 @@ public class AlbumController {
     @RequestMapping(value = "/{id}/photos", method = RequestMethod.GET)
     public ResponseEntity<List<Photo>> getAlbumsPhotos(@PathVariable Integer id) {
         logger.info(String.format("GET request for album with id %d", id));
-        if(!albumService.get(id).isPresent())
+        if(albumService.get(id).isEmpty())
             return ResponseEntity.notFound().build();
 
         Optional photoList = albumService.getPhotos(id);
