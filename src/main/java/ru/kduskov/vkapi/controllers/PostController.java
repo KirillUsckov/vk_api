@@ -30,6 +30,17 @@ public class PostController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping
+    public ResponseEntity<List<Post>> getPostsByUserId(@RequestParam Integer userId) {
+        logger.info(String.format("GET request for posts with userId %d", userId));
+
+        Optional postList = postService.getPostsByUser(userId);
+        if (postList.isPresent())
+            return ResponseEntity.ok().body((List<Post>) postList.get());
+
+        return ResponseEntity.notFound().build();
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deletePost(@PathVariable Integer id) {
         logger.info(String.format("DELETE request for post with id %d", id));

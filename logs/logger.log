@@ -5397,3 +5397,87 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'who' canno
 2024-03-13 13:57:38,607 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-03-13 13:57:38,610 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2024-03-13 13:57:38,619 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-03-13 14:42:13,204 INFO o.s.b.StartupInfoLogger [main] Starting ApiApplication using Java 21.0.2 with PID 17972 (C:\Projects\IDEA\vk_api\target\classes started by KirBe in C:\Projects\IDEA\vk_api)
+2024-03-13 14:42:13,209 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-03-13 14:42:14,439 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-13 14:42:14,537 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 86 ms. Found 3 JPA repository interfaces.
+2024-03-13 14:42:15,389 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2024-03-13 14:42:15,405 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-13 14:42:15,406 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-03-13 14:42:15,406 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-03-13 14:42:15,535 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-03-13 14:42:15,536 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2252 ms
+2024-03-13 14:42:15,798 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-13 14:42:15,874 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.1.5.Final
+2024-03-13 14:42:16,122 WARN o.h.b.i.MetadataBuilderImpl$MetadataBuildingOptionsImpl [main] HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2024-03-13 14:42:16,305 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-03-13 14:42:16,312 WARN c.z.h.u.DriverDataSource [main] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2024-03-13 14:42:16,816 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ba562e0
+2024-03-13 14:42:16,820 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-03-13 14:42:16,913 INFO o.h.e.j.d.i.DialectFactoryImpl [main] HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2024-03-13 14:42:18,076 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-03-13 14:42:18,090 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-13 14:42:18,486 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.repository.UserRepository
+2024-03-13 14:42:18,606 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.controllers.AlbumController
+2024-03-13 14:42:18,715 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.controllers.UserController
+2024-03-13 14:42:18,809 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-13 14:42:18,944 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.config.WebSecurityConfig
+2024-03-13 14:42:19,256 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2784145d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4bd1b07d, org.springframework.security.web.context.SecurityContextHolderFilter@4d145177, org.springframework.security.web.header.HeaderWriterFilter@f09c282, org.springframework.security.web.authentication.logout.LogoutFilter@10664c3d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@52b7c1d9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e9d203e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@519a81dd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7789526e, org.springframework.security.web.session.SessionManagementFilter@2a4f1bc5, org.springframework.security.web.access.ExceptionTranslationFilter@5f69462f, org.springframework.security.web.access.intercept.AuthorizationFilter@574134ba]
+2024-03-13 14:42:19,516 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.repository.RoleRepository
+2024-03-13 14:42:19,638 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-13 14:42:19,651 INFO o.s.b.StartupInfoLogger [main] Started ApiApplication in 7.004 seconds (process running for 8.233)
+2024-03-13 14:42:19,669 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-13 14:42:19,672 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-03-13 14:42:19,682 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-03-13 14:58:42,164 INFO o.s.b.StartupInfoLogger [main] Starting ApiApplication using Java 21.0.2 with PID 22464 (C:\Projects\IDEA\vk_api\target\classes started by KirBe in C:\Projects\IDEA\vk_api)
+2024-03-13 14:58:42,169 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-03-13 14:58:43,269 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-13 14:58:43,382 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 98 ms. Found 3 JPA repository interfaces.
+2024-03-13 14:58:44,263 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2024-03-13 14:58:44,275 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-13 14:58:44,289 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-03-13 14:58:44,295 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-03-13 14:58:44,432 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-03-13 14:58:44,433 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2196 ms
+2024-03-13 14:58:44,692 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-13 14:58:44,763 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.1.5.Final
+2024-03-13 14:58:45,034 WARN o.h.b.i.MetadataBuilderImpl$MetadataBuildingOptionsImpl [main] HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2024-03-13 14:58:45,251 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-03-13 14:58:45,258 WARN c.z.h.u.DriverDataSource [main] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2024-03-13 14:58:45,809 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ba562e0
+2024-03-13 14:58:45,812 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-03-13 14:58:45,904 INFO o.h.e.j.d.i.DialectFactoryImpl [main] HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2024-03-13 14:58:47,282 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-03-13 14:58:47,295 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-13 14:58:47,713 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.repository.UserRepository
+2024-03-13 14:58:47,844 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.controllers.AlbumController
+2024-03-13 14:58:47,972 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.controllers.UserController
+2024-03-13 14:58:48,048 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-13 14:58:48,174 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.config.WebSecurityConfig
+2024-03-13 14:58:48,478 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5fafd099, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@580e01cd, org.springframework.security.web.context.SecurityContextHolderFilter@39f7cc46, org.springframework.security.web.header.HeaderWriterFilter@52a605c3, org.springframework.security.web.authentication.logout.LogoutFilter@e98adb2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2784145d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7621c3f7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45cddfd3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e9a10e9, org.springframework.security.web.session.SessionManagementFilter@4d145177, org.springframework.security.web.access.ExceptionTranslationFilter@560c3758, org.springframework.security.web.access.intercept.AuthorizationFilter@272f5373]
+2024-03-13 14:58:48,797 WARN o.s.c.LocalVariableTableParameterNameDiscoverer [main] Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: ru.kduskov.vkapi.repository.RoleRepository
+2024-03-13 14:58:48,897 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-03-13 14:58:48,921 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-13 14:58:48,931 INFO o.s.b.StartupInfoLogger [main] Started ApiApplication in 7.375 seconds (process running for 8.643)
+2024-03-13 14:58:56,656 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-13 14:58:56,663 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-03-13 14:58:56,665 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2024-03-13 14:58:56,675 DEBUG o.s.s.w.FilterChainProxy [http-nio-8080-exec-1] Securing GET /users/3
+2024-03-13 14:58:56,685 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter [http-nio-8080-exec-1] Set SecurityContextHolder to anonymous SecurityContext
+2024-03-13 14:58:56,702 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-1] Trying to match using RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]
+2024-03-13 14:58:56,703 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-1] No match found. Using default entry point org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint@7907ebf4
+2024-03-13 14:58:56,708 DEBUG o.s.s.w.FilterChainProxy [http-nio-8080-exec-1] Securing GET /error
+2024-03-13 14:58:56,711 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter [http-nio-8080-exec-1] Set SecurityContextHolder to anonymous SecurityContext
+2024-03-13 14:58:56,712 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-1] Trying to match using RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]
+2024-03-13 14:58:56,712 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-1] No match found. Using default entry point org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint@7907ebf4
+2024-03-13 14:59:15,103 DEBUG o.s.s.w.FilterChainProxy [http-nio-8080-exec-2] Securing GET /
+2024-03-13 14:59:15,104 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter [http-nio-8080-exec-2] Set SecurityContextHolder to anonymous SecurityContext
+2024-03-13 14:59:15,113 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-2] Trying to match using RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]
+2024-03-13 14:59:15,114 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-2] No match found. Using default entry point org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint@7907ebf4
+2024-03-13 14:59:15,114 DEBUG o.s.s.w.FilterChainProxy [http-nio-8080-exec-2] Securing GET /error
+2024-03-13 14:59:15,120 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter [http-nio-8080-exec-2] Set SecurityContextHolder to anonymous SecurityContext
+2024-03-13 14:59:15,120 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-2] Trying to match using RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]
+2024-03-13 14:59:15,121 DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint [http-nio-8080-exec-2] No match found. Using default entry point org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint@7907ebf4
+2024-03-13 14:59:19,957 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-13 14:59:19,960 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-03-13 14:59:19,995 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

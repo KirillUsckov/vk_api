@@ -24,10 +24,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-       logger.info("HANDLE 403");
-
         auditRep.save(new AuditRecord(LocalDateTime.now(), request.getRequestURI(), GeneralInfo.user(), false, String.format("Exception %s", accessDeniedException.getMessage())));
-
         response.sendError(403);
     }
 }
